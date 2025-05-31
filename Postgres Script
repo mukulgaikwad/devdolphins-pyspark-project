@@ -1,0 +1,28 @@
+-- Creating the transaction_pointer table for Mechanism X
+CREATE TABLE IF NOT EXISTS transaction_pointer (
+    id SERIAL PRIMARY KEY,
+    last_index INT DEFAULT 0,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Inserting an initial row into transaction_pointer if it doesn't exist
+INSERT INTO transaction_pointer (last_index)
+SELECT 0
+WHERE NOT EXISTS (SELECT 1 FROM transaction_pointer);
+
+-- Creating the all_transactions table for Mechanism Y
+CREATE TABLE IF NOT EXISTS all_transactions (
+    id SERIAL PRIMARY KEY,
+    CustomerId VARCHAR(50),
+    MerchantId VARCHAR(50),
+    transaction_value DOUBLE PRECISION,
+    gender VARCHAR(10),
+    transaction_type VARCHAR(50),
+    YStartTime TIMESTAMP,
+    detectionTime TIMESTAMP
+);
+
+-- Adding indexes to improve query performance
+CREATE INDEX IF NOT EXISTS idx_all_transactions_customerid ON all_transactions (CustomerId);
+CREATE INDEX IF NOT EXISTS idx_all_transactions_merchantid ON all_transactions (MerchantId);
+CREATE INDEX IF NOT EXISTS idx_all_transactions_ystarttime ON all_transactions (YStartTime);
