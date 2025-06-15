@@ -1,4 +1,4 @@
-# PySpark Data Engineer project 
+# PySpark Data Engineer project 1 
 
 This repository contains the implementation of a data processing pipeline for the PySpark Data Engineer assignment. The project consists of two mechanisms, **Mechanism X** and **Mechanism Y**, built using PySpark on Databricks, AWS S3 for storage, and PostgreSQL for temporary data storage. The pipeline processes transaction data, detects specific patterns, and generates outputs as per the assignment requirements.
 
